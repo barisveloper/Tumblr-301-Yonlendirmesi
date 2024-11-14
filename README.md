@@ -1,50 +1,31 @@
-Tumblr Kullanıcılarını Otomatik Olarak x.com'a Yönlendirme
-Bu proje, Tumblr hesabına giriş yapan tüm kullanıcıları otomatik olarak belirlenen bir siteye (bu örnekte x.com) yönlendirecek bir kod içerir. Projeyi, Tumblr'ın web veya mobil sürümlerine entegre ederek tüm giriş yapan kullanıcıların otomatik yönlendirilmesini sağlayabilirsiniz.
+Kelimeye Göre 301 Yönlendirme - index.php
 
-ÖNEMLİ: Bu kod, kullanıcıları haber vermeden yönlendirdiği için kullanımında dikkatli olunmalıdır. Tumblr kullanım koşullarını ihlal edebileceğinden, bu tür bir kodu kullanmadan önce mutlaka izin almanız gerekir.
+Bu proje, belirli anahtar kelimelere göre 301 yönlendirmesi yapan basit bir PHP dosyasıdır. Web sitenize gelen trafiği, belirli kelimeler içeren URL'lere göre otomatik olarak yönlendirmek için kullanabilirsiniz.
+
+Nasıl Çalışır?
+index.php dosyası, URL'deki belirli anahtar kelimeleri kontrol eder. Eğer tanımlı bir kelimeyle eşleşme sağlanırsa, kullanıcıyı belirtilen yeni URL'ye 301 yönlendirme yöntemi ile yönlendirir. Bu özellik, arama motoru optimizasyonu (SEO) için faydalı bir çözüm sunar.
 
 Özellikler
-Tumblr hesabına giriş yapan tüm kullanıcıları tespit eder.
-Kullanıcıları otomatik olarak belirlenen başka bir siteye (x.com) yönlendirir.
-Hem web hem de mobil sürümle uyumludur.
-Gereksinimler
-Bu proje, aşağıdaki gereksinimlere ihtiyaç duyar:
-
-Tumblr hesabı üzerinde yönetici erişimi.
-Tumblr profilinize veya temanıza JavaScript ekleme yetkisi.
-Kodun çalışacağı tarayıcılarda JavaScript'in etkin olması.
+Anahtar Kelimelere Göre Dinamik Yönlendirme: URL içinde tanımlı anahtar kelimelerle eşleştiğinde çalışır.
+SEO Dostu 301 Yönlendirmeler: Kalıcı yönlendirme yaparak SEO açısından fayda sağlar.
+Kolay Yapılandırma: Hedef URL'leri ve anahtar kelimeleri yapılandırmak kolaydır.
+Hafif ve Verimli: Düşük maliyetli ve performans dostu bir çözüm sunar.
 Kullanım
-1. Kodun Eklenmesi
-Aşağıdaki kodu Tumblr hesabınızın ayarlar kısmında, HTML veya JavaScript düzenleme alanına ekleyin:
-<script>
-  window.onload = function() {
-    // Kullanıcı giriş yapmışsa yönlendir
-    if (document.cookie.includes("pfg_logged_in=1")) {
-      window.location.href = "https://x.com"; // Yönlendirme yapılacak site
-    }
-  };
-</script>
-2. Kodun Çalışması
-Yönlendirme Kontrolü: document.cookie.includes("pfg_logged_in=1") ifadesi, kullanıcı giriş yaptığında tetiklenir. Bu çerez, Tumblr'a giriş yapılmış olduğunda otomatik olarak oluşur.
-Yönlendirme: Kullanıcı giriş yapmışsa, window.location.href = "https://x.com" ifadesi çalışır ve kullanıcı x.com sitesine yönlendirilir.
-3. Test Etme
-Kodun çalıştığından emin olmak için şu adımları izleyin:
+1. index.php Dosyasını Yükleme
+Proje dizininizin kök klasörüne index.php dosyasını ekleyin.
 
-Tumblr hesabınıza giriş yapın.
-Giriş yaptıktan sonra Tumblr sayfasına gidin.
-Sayfanın otomatik olarak x.com sitesine yönlendirildiğinden emin olun.
-Dikkat Edilmesi Gerekenler
-Kullanıcı İzni: Bu kod, Tumblr hesabına giriş yapan kullanıcıları otomatik olarak başka bir siteye yönlendireceğinden, bu tür bir işlemi kullanıcı izni olmadan uygulamak yasadışı olabilir.
-Yasal Uyumluluk: Tumblr'ın kullanım koşullarına ve veri gizliliği yasalarına uygunluğu sağlamak sizin sorumluluğunuzdadır.
-Güvenlik ve Gizlilik: Kullanıcıların bilgileri veya etkinlikleri ile ilgili veri toplama işlemleri yapıyorsanız, gizlilik yasalarına uymaya özen gösterin.
-Sık Sorulan Sorular
-1. Kod tüm cihazlarda çalışır mı?
-Evet, kod hem web hem de mobil cihazlarda çalışır, çünkü JavaScript'in desteklendiği tüm tarayıcılarda etkindir.
+2. Yönlendirmeleri Tanımlama
+index.php dosyasının içinde, yönlendirme yapılacak anahtar kelimeleri ve hedef URL'leri $redirects dizisi içinde tanımlayın.
 
-2. Kod, kullanıcıyı yönlendirmediğinde ne yapmalıyım?
-Kodun çalışmaması durumunda:
+Açıklamalar:
+Anahtar Kelime: eski-kelime ve ornek-kelime gibi anahtar kelimeler, URL içinde kontrol edilecek ifadelerdir.
+Yönlendirme URL'si: Anahtar kelime URL içinde bulunduğunda kullanıcıyı yönlendirecek olan URL (https://yeni-url.com gibi).
+3. Çalıştırma
+Web sitenize gelen bir istek belirli bir anahtar kelime içeriyorsa, ziyaretçi otomatik olarak yapılandırılmış yeni URL'ye yönlendirilir.
+301 kalıcı yönlendirme kullanılarak SEO uyumlu bir şekilde yönlendirme yapılır.
+Örnek Kullanım Senaryosu
+Örneğin, https://siteniz.com/eski-kelime URL'sine gelen bir ziyaretçi, https://yeni-url.com adresine yönlendirilecektir.
 
-JavaScript’in etkin olup olmadığını kontrol edin.
-Çerezlerin doğru ayarlandığından ve Tumblr kullanıcı giriş çerezinin pfg_logged_in=1 olarak göründüğünden emin olun.
-
-Kodun Tumblr kullanıcılarını x.com adresine yönlendirmesiyle ilgili ek bilgiler veya sorularınız için proje sayfasında bize ulaşabilirsiniz.
+Notlar:
+Dikkat: strpos işlevi, anahtar kelimenin büyük/küçük harf duyarlı olduğunu unutmayın.
+301 Yönlendirme: Yönlendirmeler 301 statü koduyla yapılır, bu kalıcı yönlendirmeler SEO'ya uygun olarak tercih edilmiştir.
